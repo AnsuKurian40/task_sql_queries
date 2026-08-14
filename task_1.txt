@@ -1,0 +1,112 @@
+create database movie_stream_db;
+
+use movie_stream_db;
+
+create table movies(movie_id int auto_increment primary key,
+                    movie_name varchar(20) not null, 
+                    genre enum("action","romance","thriller"),
+                    language varchar(50),
+                    rating decimal(2,1),
+                    duration_min int,
+                    release_year int);
+
+insert into movies(movie_name,genre,language,rating,duration_min,release_year) values ("Leo","action","tamil",4.5,164,2025),
+                                                                                       ("thuppakki","action","tamil",4.0,158,2018),
+                                                                                       ("premalu","romance","malayalam",4.9,200,2024),
+                                                                                       ("Drishyam","thriller","malayalam",3.8,173,2020),
+                                                                                       ("96","romance","tamil",3.0,220,2019),
+                                                                                       ("KGF","action","kannada",3.5,143,2021);
+
+select * from movies;
+
+#. Display only Movie_Name and Rating.
+
+select movie_name,rating from movies;
+
+#7. Display all distinct genres.
+
+select distinct genre from movies;
+
+#Display all distinct languages.
+
+select distinct language from movies;
+
+#9. Display top 3 movies.
+
+select movie_name,rating from movies order by rating DESC limit 3;
+
+#10. Display top 2 highest-rated movies.
+
+select movie_name , rating from movies order by rating desc limit 2;
+
+#11. Display movies with rating > 8.0.
+
+insert into movies(movie_name,genre,language,rating,duration_min,release_year) values ("I","action","tamil",9.5,164,2025);
+
+
+select movie_name,rating from movies where rating > 8.0;
+
+#12. Display movies released after 2020.
+
+select movie_name,release_year from movies where release_year > 2020;
+
+#13. Display Action movies.
+
+select movie_name from movies where genre ="action";
+
+#14. Display movies ordered by Rating DESC.
+
+select movie_name,rating from movies order by rating desc;
+
+#15. Display movies ordered by Release_Year ASC.
+
+select movie_name,release_year from movies order by release_year;
+
+select max(rating) as maximum_rating from movies;
+
+select min(duration_min) as minimum_duration from movies;
+
+#18. Find average rating.
+
+select avg(rating) as average_rating from movies;
+
+#19. Count movies in each genre (GROUP BY).
+
+select genre,count(*) as movie_count from movies group by genre;
+
+#20. Find average rating for each language.
+
+select language,avg(rating) as average_rating from movies group by language;
+
+#21. Display genres having more than 1 movie (HAVING).
+
+select genre,count(*) as movie_count from movies group by genre having count(*) > 1;
+
+#22. Display languages having more than 1 movie (HAVING).
+
+select language,count(*) as movie_count from movies group by language having count(*) > 1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                       
+                                                                                       
+                    
+                    
+                    
